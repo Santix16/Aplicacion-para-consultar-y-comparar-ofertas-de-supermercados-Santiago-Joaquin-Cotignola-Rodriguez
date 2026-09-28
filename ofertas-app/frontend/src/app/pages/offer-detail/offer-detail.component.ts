@@ -103,14 +103,19 @@ export class OfferDetailComponent implements OnInit {
     return 0;
   }
 
-  getDaysOfWeek(): string[] {
-    return ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
-  }
+  readonly weekDays = [
+    { label: 'Lunes', key: 'monday' },
+    { label: 'Martes', key: 'tuesday' },
+    { label: 'Miércoles', key: 'wednesday' },
+    { label: 'Jueves', key: 'thursday' },
+    { label: 'Viernes', key: 'friday' },
+    { label: 'Sábado', key: 'saturday' },
+    { label: 'Domingo', key: 'sunday' }
+  ];
 
-  getOpeningHours(day: string): string {
-    if (!this.store?.openingHours) return 'No disponible';
-    const hours = (this.store.openingHours as any)[day];
-    return hours || 'Cerrado';
+  getOpeningHours(dayKey: string): string {
+    const hours = (this.store?.openingHours as Record<string, string> | undefined)?.[dayKey];
+    return hours ? hours : 'No disponible';
   }
 
   isOfferActive(): boolean {

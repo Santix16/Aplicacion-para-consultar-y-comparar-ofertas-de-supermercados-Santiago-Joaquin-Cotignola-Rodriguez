@@ -117,31 +117,13 @@
             </p>
           </div>
 
-          <div class="store-location">
-            <div class="location-coords">
-              <p><strong>Coordenadas GPS:</strong></p>
-              <p>Latitud: {{ store.location.latitude }}</p>
-              <p>Longitud: {{ store.location.longitude }}</p>
-            </div>
-
-            <div class="map-placeholder">
-              <div class="map-icon"></div>
-              <p>Mapa interactivo próximamente</p>
-              <p class="coords-link">
-                <a [href]="'https://www.google.com/maps?q=' + store.location.latitude + ',' + store.location.longitude" target="_blank">
-                  Ver en Google Maps ↗
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="store-hours" *ngIf="store.openingHours">
-          <h4>Horario de apertura</h4>
-          <div class="hours-grid">
-            <div class="hour-item" *ngFor="let day of getDaysOfWeek()">
-              <span class="day">{{ day }}:</span>
-              <span class="hours">{{ getOpeningHours(day.toLowerCase()) }}</span>
+          <div class="store-hours" *ngIf="store.openingHours">
+            <h4>Horario de apertura</h4>
+            <div class="hours-grid">
+              <div class="hour-item" *ngFor="let day of weekDays">
+                <span class="day">{{ day.label }}:</span>
+                <span class="hours">{{ getOpeningHours(day.key) }}</span>
+              </div>
             </div>
           </div>
         </div>
